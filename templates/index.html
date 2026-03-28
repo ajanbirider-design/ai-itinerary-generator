@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajnabi AI Planner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1 class="neon">🏔️ Ajnabi AI Travel Planner</h1>
+    <p class="tagline">Plan Smart. Ride Wild.</p>
+
+    <form method="POST" class="card">
+
+        <label>Choose Destination</label>
+        <select name="destination" id="destination" onchange="toggleInput()">
+            <option value="Ladakh">Ladakh</option>
+            <option value="Spiti">Spiti</option>
+            <option value="Zanskar">Zanskar</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <input type="text" name="custom_destination" id="custom_input" placeholder="Enter your location" style="display:none;">
+
+        <input type="number" name="budget" placeholder="Budget (INR)" required>
+        <input type="number" name="days" placeholder="Days" required>
+
+        <select name="mode">
+            <option value="Bike">Bike</option>
+            <option value="Car">Car</option>
+        </select>
+
+        <button type="submit">Generate Plan 🚀</button>
+    </form>
+
+    {% if weather %}
+    <div class="card glow">
+        <h3>🌦️ Weather</h3>
+        <p>{{ weather }}</p>
+    </div>
+    {% endif %}
+
+    {% if map_link %}
+    <div class="card">
+        <a href="{{ map_link }}" target="_blank">🗺️ Open Route</a>
+    </div>
+    {% endif %}
+
+    {% if plan %}
+    <div class="card glow">
+        <h2>🗺️ Travel Plan</h2>
+        <pre>{{ plan }}</pre>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function toggleInput() {
+    var select = document.getElementById("destination");
+    var input = document.getElementById("custom_input");
+
+    if (select.value === "Other") {
+        input.style.display = "block";
+    } else {
+        input.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
