@@ -2,8 +2,8 @@ import os
 import requests
 from openai import OpenAI
 
-client = OpenAI(api_key=os.getenv("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"))
-WEATHER_API_KEY = os.getenv("06baf489e4f3e79ab8cd9d779e4b1fc2")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+WEATHER_API_KEY = os.getenv("WEATHER_API_KEY")
 
 
 def get_weather(city):
